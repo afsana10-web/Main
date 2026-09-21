@@ -153,3 +153,16 @@ frontend against this endpoint). Demo mode is also configurable via the
   the backend's `/uploads` static mount is reachable (it's mounted
   automatically from `UPLOAD_DIR` in `main.py`) and that you're not behind
   a proxy stripping that path.
+
+# Git Hub Commands to Upload 
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin YOUR-GITHUB-REPO-URL
+git branch -M main
+git push -u origin main
+
+##Git Hub commands to add any changes
+git add .
+git commit -m "Update mobile UI"
+git push
