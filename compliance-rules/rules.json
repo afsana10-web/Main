@@ -1,0 +1,138 @@
+{
+  "version": "LMPC-2011-R1",
+  "description": "Baseline configurable rule set modelled on the mandatory declarations under the Legal Metrology (Packaged Commodities) Rules, 2011, Rule 6. This is a prototype rule set for SIH demonstration purposes and must be reviewed by a Legal Metrology domain expert before any real deployment.",
+  "rules": [
+    {
+      "rule_code": "LMPC-MFG-01",
+      "rule_name": "Name and address of manufacturer/packer/importer",
+      "category": "MANUFACTURER_PACKER_IMPORTER",
+      "applicable_condition": "All pre-packaged commodities",
+      "validation_method": "REQUIRED_PRESENT",
+      "validation_params": {},
+      "reason_template": "Manufacturer/packer/importer declaration detected: {value}",
+      "legal_reference": "LMPC Rules 2011, Rule 6(1)(a)",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-COO-01",
+      "rule_name": "Country of origin (where applicable, e.g. imported goods)",
+      "category": "COUNTRY_OF_ORIGIN",
+      "applicable_condition": "Imported products",
+      "validation_method": "REQUIRED_PRESENT",
+      "validation_params": {},
+      "reason_template": "Country of origin declaration detected: {value}",
+      "legal_reference": "LMPC Rules 2011 / Consumer Protection (E-Commerce) Rules",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-NAME-01",
+      "rule_name": "Common or generic name of the commodity",
+      "category": "PRODUCT_NAME",
+      "applicable_condition": "All pre-packaged commodities",
+      "validation_method": "REQUIRED_PRESENT",
+      "validation_params": {},
+      "reason_template": "Product/generic name candidate detected: {value}",
+      "legal_reference": "LMPC Rules 2011, Rule 6(1)(b)",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-NQ-01",
+      "rule_name": "Net quantity declaration present",
+      "category": "NET_QUANTITY",
+      "applicable_condition": "All pre-packaged commodities",
+      "validation_method": "REQUIRED_PRESENT",
+      "validation_params": {},
+      "reason_template": "Net quantity declaration detected: {value}",
+      "legal_reference": "LMPC Rules 2011, Rule 6(1)(c)",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-NQ-02",
+      "rule_name": "Net quantity uses a standard unit of weight/measure/number",
+      "category": "NET_QUANTITY",
+      "applicable_condition": "All pre-packaged commodities",
+      "validation_method": "REGEX_MATCH",
+      "validation_params": {"pattern": "(G|GM|GRAMS?|KG|ML|L|LTR|LITRE|MG|N)\\b"},
+      "reason_template": "Net quantity unit check on: {value}",
+      "legal_reference": "LMPC Rules 2011, Rule 6/Second Schedule",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-MRP-01",
+      "rule_name": "Maximum Retail Price (MRP) declaration present",
+      "category": "MRP",
+      "applicable_condition": "All pre-packaged commodities",
+      "validation_method": "REQUIRED_PRESENT",
+      "validation_params": {},
+      "reason_template": "MRP declaration detected: {value}",
+      "legal_reference": "LMPC Rules 2011, Rule 6(1)(e)",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-MRP-02",
+      "rule_name": "MRP is a plausible positive numeric value",
+      "category": "MRP",
+      "applicable_condition": "All pre-packaged commodities",
+      "validation_method": "NUMERIC_RANGE",
+      "validation_params": {"min": 0.5, "max": 500000},
+      "reason_template": "MRP numeric plausibility check on: {value}",
+      "legal_reference": "LMPC Rules 2011, Rule 6(1)(e)",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-DATE-01",
+      "rule_name": "Month and year of manufacture/packing/import",
+      "category": "MFG_PACKING_IMPORT_DATE",
+      "applicable_condition": "All pre-packaged commodities",
+      "validation_method": "REQUIRED_PRESENT",
+      "validation_params": {},
+      "reason_template": "Manufacture/packing/import date detected: {value}",
+      "legal_reference": "LMPC Rules 2011, Rule 6(1)(f)",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-BB-01",
+      "rule_name": "Best before / use by date (where applicable to perishables)",
+      "category": "BEST_BEFORE_USE_BY",
+      "applicable_condition": "Food, cosmetics, pharma and other perishable/shelf-life categories",
+      "validation_method": "REQUIRED_PRESENT",
+      "validation_params": {"applicable_categories": ["food", "beverage", "cosmetic", "pharma", "dairy", "snack"]},
+      "reason_template": "Best before/use by declaration detected: {value}",
+      "legal_reference": "LMPC Rules 2011 / applicable food safety regulations",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-CARE-01",
+      "rule_name": "Consumer care details (name, address, contact for complaints)",
+      "category": "CONSUMER_CARE",
+      "applicable_condition": "All pre-packaged commodities",
+      "validation_method": "REQUIRED_PRESENT",
+      "validation_params": {},
+      "reason_template": "Consumer care details detected: {value}",
+      "legal_reference": "LMPC Rules 2011, Rule 6(1)(a)",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-USP-01",
+      "rule_name": "Unit sale price (where sold in multi-piece packages)",
+      "category": "UNIT_SALE_PRICE",
+      "applicable_condition": "Multi-piece retail packages",
+      "validation_method": "NOT_APPLICABLE",
+      "validation_params": {"applicable_categories": ["__none_by_default__"]},
+      "reason_template": "Unit sale price check is only applicable to declared multi-piece packages; not evaluated by default.",
+      "legal_reference": "LMPC Rules 2011, Rule 6(1)(d)",
+      "status": "ACTIVE"
+    },
+    {
+      "rule_code": "LMPC-DIM-01",
+      "rule_name": "Dimensions declaration (where sold by dimension, e.g. cloth/wire)",
+      "category": "DIMENSIONS",
+      "applicable_condition": "Products sold by length/area/dimension",
+      "validation_method": "NOT_APPLICABLE",
+      "validation_params": {"applicable_categories": ["__none_by_default__"]},
+      "reason_template": "Dimensions check is only applicable to products sold by dimension; not evaluated by default.",
+      "legal_reference": "LMPC Rules 2011, Second Schedule",
+      "status": "ACTIVE"
+    }
+  ]
+}
